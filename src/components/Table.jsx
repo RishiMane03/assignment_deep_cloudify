@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Row from "./Row";
 
+// Function to get initial data from local storage or set default values
 const getInitialData = () => {
   const savedData = localStorage.getItem("tableData");
   return savedData
@@ -33,6 +34,7 @@ function Table() {
     }));
   };
 
+  // Delete a specific row
   const deleteRow = (rowId) => {
     setData((prev) => ({
       ...prev,
@@ -40,6 +42,7 @@ function Table() {
     }));
   };
 
+   // Delete all rows
   const deleteAllRows = () => {
     setData((prev) => ({
       ...prev,
@@ -77,12 +80,15 @@ function Table() {
   return (
     <div className="p-4 max-w-4xl mx-auto h-screen">
       <h1 id="TableHeading" className="text-center mt-10 mb-5 text-6xl">Table</h1>
+
+      {/* Display error message if any */}
       {error && (
         <div className="mb-2 p-2 bg-red-100 text-red-700 rounded-md text-sm">
           {error}
         </div>
       )}
 
+      {/* Table structure */}
       <table className="w-full border-collapse shadow-sm border-2 border-gray-200">
         <thead className="bg-gray-50">
           <tr>
@@ -115,6 +121,7 @@ function Table() {
         </tbody>
       </table>
 
+      {/* Buttons for adding and deleting rows */}
       <div className="mt-4 flex gap-2">
         <button
           onClick={addRow}
